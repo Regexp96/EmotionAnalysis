@@ -7,17 +7,18 @@ from soynlp.hangle import compose, decompose
 # todo test셋도 csv파일 기반으로 만들고 테스트 돌려보기
 
 
-def word_check():
+def word_check(input_file, output_file):
     import timeit
     start = timeit.default_timer()
     # stems == 용언의 원형 사전
     stems = []
-    f_word = open('감정단어사전 647개 스테밍.csv', 'r')
+    f_word = open('감정단어사전 647개 스테밍_new.csv', 'r')
+    output = open(output_file, 'rw')
     for i in f_word.readlines():
         stems.append(i.rstrip("\n"))
     # testset == 원형을 찾고싶은 단어들을 모아놓은 배열
     testset = []
-    f_test = open("Gamsung 1-1.txt", 'r')
+    f_test = open(input_file, 'r')
     for i in f_test.readlines():
         testset.append(i.rstrip("\n"))
 
@@ -28,7 +29,8 @@ def word_check():
         if len(candidates) == 0:
             # print(word)
             if non_predicate(word, stems):
-                print(word)
+                print(word[0])
+                output.write(word[0]+'\n')
             # # print('후보가 없음')
         else:
             # print('{} : {}'.format(word, candidates))
@@ -86,4 +88,4 @@ def make_decomposed_list(target):
     return target_list
 
 
-word_check()
+# word_check()

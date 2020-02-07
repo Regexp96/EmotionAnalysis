@@ -6,7 +6,7 @@ def create(positiveCount, nagativeCount):
         import matplotlib.pyplot as plt
         from matplotlib import font_manager, rc
         from matplotlib import style
-        font_name = font_manager.FontProperties(fname="../NanumGothic.ttf").get_name()
+        font_name = font_manager.FontProperties(fname="../Font/NanumGothic.ttf").get_name()
         # matplotlib.font_manager._rebuild(
         rc('font', family=font_name)
         style.use('ggplot')

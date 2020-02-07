@@ -1,5 +1,13 @@
 import random
 import math
+import russelCsvRead
+import emotionCsvRead
+import categoryCsvRead
+import coinedWordCsvRead
+import datetime
+import numpy
+import pie_chart
+import radar_chart
 
 class Point2D:
     def __init__(self, x, y):
@@ -69,27 +77,10 @@ class analysis:
                 self.categoryNameList = categoryNameListTemp.copy()
 
 
-def run(filename,analysis = analysis()):
-    import russelCsvRead
-    import emotionCsvRead
-    import categoryCsvRead
-    import coinedWordCsvRead
-    import datetime
-    import numpy
-    import pie_chart
-    import radar_chart
-
-
+def run(filename, analysis = analysis()):
     # 폰트 최대사이즈 (26~60 = word // 300~4500 = scatter)
-    # max_font_size = 60
-    # min_font_size = 26
     max_font_size = 4800
     min_font_size = 200
-    # max_font_size = 90
-    # min_font_size = 12
-
-    # min_scatter_size = 4500
-    # max_scatter_size = 300
 
     def create_wordcount_list():
         from nltk import collections
@@ -216,10 +207,10 @@ def run(filename,analysis = analysis()):
             import matplotlib.pyplot as plt
             from matplotlib import font_manager
 
-            russelFont = font_manager.FontProperties(fname='../HMKMRHD.ttf', size=14)
+            russelFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
             # emotionFont = font_manager.FontProperties(fname='c:/Windows/Fonts/NanumMyeongjo.ttf', size=28)
-            emotionFont = font_manager.FontProperties(fname='../HMKMRHD.ttf', size=14)
-            categoryFont = font_manager.FontProperties(fname='../HMKMRHD.ttf', size=14)
+            emotionFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
+            categoryFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
 
             fig = plt.figure(figsize=(18, 10))  # 그래프의 가로세로 크기
             # fig = plt.figure(figsize=(10, 6))  # 그래프의 가로세로 크기
@@ -279,7 +270,7 @@ def run(filename,analysis = analysis()):
                 plt.annotate(word, xy=(x, y),
                              xytext=(16, 4),  # 텍스트가 점이랑 떨어져있는 정도
                              textcoords='offset points',
-                             fontproperties=font_manager.FontProperties(fname='../NanumGothic.ttf'),
+                             fontproperties=font_manager.FontProperties(fname='../Font/NanumGothic.ttf'),
                              ha='right', va='bottom', size='14',
                              color='black', weight="bold", alpha=0.50,
                              # arrowprops=dict(arrowstyle="->")
