@@ -6,25 +6,11 @@ def morpheme_analysis(input_filename, output_filename):
     # 감정표현가능 형태소 분류한 거 기록할 파일 오픈
     writeFile = open(output_filename, 'w')
 
-    # # 형태소마다 어떻게 들어갔는지 기록할 파일 오픈
-    # file = open('morpheme_count12.csv', 'w')
-    # w = csv.writer(file)
-    # w.writerow(['Noun', 'Verb', 'Adjective', 'Exclamation'])
-    #
-    # # 분석할 텍스트데이터 파일 오픈
     readFile = open(input_filename, 'rt')
     #
     # # 총 단어 개수
     wordCount = 0
-    #
-    list1 = []  # Noun 담을 리스트
-    list2 = []  # Verb 담을 리스트
-    list3 = []  # Adjective 담을 리스트
-    list4 = []  # Exclamation 담을 리스트
-    # list_count = 0
-    #
-    # # 감성 표현이 가능한 품사인
-    # # 명사, 동사, 형용사, 감탄사에 해당하는 형태소만 추출했을 때의 단어개수
+
     morWordCount = 0
     #
     while True:
@@ -49,45 +35,6 @@ def morpheme_analysis(input_filename, output_filename):
                     print(e[0], file=writeFile)
                     print(e[0])
                     morWordCount += 1
-
-                    # if e[1] == 'Noun':
-                    #     list1.append(e[0])
-                    #     print('noun')
-                    # elif e[1] == 'Verb':
-                    #     list2.append(e[0])
-                    #     print('verb')
-                    # elif e[1] == 'Adjective':
-                    #     list3.append(e[0])
-                    #     print('adjective')
-                    # elif e[1] == 'Exclamation':
-                    #     list4.append(e[0])
-                    #     print('exclamation')
-    #
-    # # 신뢰성 검증 파일 만들기
-    # for i in range(0, morWordCount - 1):
-    #     if (list1):
-    #         ()
-    #     else:
-    #         list1.append('')
-    #     if (list2):
-    #         ()
-    #     else:
-    #         list2.append('')
-    #     if (list3):
-    #         ()
-    #     else:
-    #         list3.append('')
-    #     if (list4):
-    #         ()
-    #     else:
-    #         list4.append('')
-    #
-    # #     # print(i)
-    #     w.writerow([list1[0], list2[0], list3[0], list4[0]])
-    #     list1.pop(0)
-    #     list2.pop(0)
-    #     list3.pop(0)
-    #     list4.pop(0)
 
     readFile.close()
     writeFile.close()
@@ -197,10 +144,9 @@ def run(file_path=''):
         # 감정단어사전 매칭
         dictionary_matching(matching_complete,output_filename)
         #
-        # # 워드클라우드 생성
+        # 워드클라우드 생성
         create_wordcloud(matching_complete)
-        #
-        # # 러셀모델에 플로팅
+        # 러셀모델에 플로팅
 
         import russel_floating
         russel_floating.run(matching_complete)
