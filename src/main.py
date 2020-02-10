@@ -6,6 +6,7 @@ from konlpy.tag import Hannanum
 import csv
 from pykospacing import spacing
 
+
 def morpheme_analysis(input_filename, output_filename):
     t = Hannanum()
     # 감정표현가능 형태소 분류한 거 기록할 파일 오픈
@@ -176,11 +177,14 @@ def run(file_path=''):
 
         # 감정단어사전 매칭
         print('감성사전 매칭')
-        dictionary_matching(matching_complete,output_file)
+        # dictionary_matching(matching_complete,output_file)
+        import word_count
+        word_count.word_check(output_file, matching_complete)
 
         # 워드클라우드 생성
         print('워드클라우드 생성')
         create_wordcloud(matching_complete)
+
         # 러셀모델에 플로팅
         print('모델에 플로팅')
         russel_floating.run(matching_complete)

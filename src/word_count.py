@@ -12,15 +12,20 @@ def word_check(input_file, output_file):
     start = timeit.default_timer()
     # stems == 용언의 원형 사전
     stems = []
-    f_word = open('감정단어사전 647개 스테밍_new.csv', 'r')
-    output = open(output_file, 'rw')
+    f_word = open('emotionword_dic.csv', 'r')
+    output = open(output_file, 'w')
     for i in f_word.readlines():
         stems.append(i.rstrip("\n"))
     # testset == 원형을 찾고싶은 단어들을 모아놓은 배열
     testset = []
     f_test = open(input_file, 'r')
+    import re
     for i in f_test.readlines():
-        testset.append(i.rstrip("\n"))
+        # a = i.rstrip('\n').rstrip(',')
+        hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
+        a = hangul.sub("", i)
+        testset.append(a)
+
 
     lemmatiz = lemmatizer.Lemmatizer(stems=stems)
 
@@ -35,8 +40,9 @@ def word_check(input_file, output_file):
         else:
             # print('{} : {}'.format(word, candidates))
             cand_list = list(candidates)
-            # print(list(cand_list[0])[0])
-            print(candidates)
+            print(list(cand_list[0])[0])
+            output.write(list(cand_list[0])[0]+'\n')
+            # print(candidates)
 
     stop = timeit.default_timer()
     print(stop - start)
@@ -87,5 +93,14 @@ def make_decomposed_list(target):
     # print('make_decomposed_list: '+target)
     return target_list
 
+# import csv
+# file = open('../coinedWordData.csv')
+# write = open('../test.txt','w')
+# read_csv = csv.reader(file)
+# for lines in read_csv:
+#     print(lines[0], file=write)
+#
+# write.close()
 
-# word_check()
+
+# word_check('../test.txt','1.txt')
