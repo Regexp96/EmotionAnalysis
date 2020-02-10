@@ -160,4 +160,4 @@ lemmatizer = Lemmatizer(stems = stems)
 
 for word in testset:
     candidates = lemmatizer.candidates(word)
-    print('{} : {}'.format(word, candidates))
+    # print('{} : {}'.format(word, candidates))

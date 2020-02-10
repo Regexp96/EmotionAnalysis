@@ -144,8 +144,8 @@ def create_wordcloud(matching_complete):
         return
 
     # relative_scaling = 0 ~ 1 이고 0일 수록 빽빽히 차게 된다.
-    wordcloud = WordCloud(max_font_size=40, font_path=font_path, background_color='white',
-                          relative_scaling=0.48).generate(text)
+    wordcloud = WordCloud(max_font_size=80, font_path=font_path, background_color='white',
+                          relative_scaling=0.48, collocations=False).generate(text)
     # plt.figure(figsize=(18, 18))
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
@@ -157,7 +157,7 @@ def create_wordcloud(matching_complete):
 def run(file_path=''):
     if __name__ == '__main__':
         # 분석할 텍스트파일 경로
-        input_file = 'dataset/everytime.csv'
+        input_file = 'dataset/naver_news.csv'
         output_file = 'output.txt'
         matching_complete = 'matching_complete.txt'
         complete_analyze = 'complete_analyze.txt'
@@ -166,14 +166,12 @@ def run(file_path=''):
 
         # 새로운 단어 체크 알고리즘
         # 그래프 플로팅용 다시 만들어야함
-        # import word_count
-        # word_count.word_check(output_file, matching_complete)
 
         print(input_file, '분석중....')
 
         # 형태소분석
         print('형태소 분석 시작.')
-        # morpheme_analysis(input_file,output_file)
+        morpheme_analysis(input_file,output_file)
 
         # 감정단어사전 매칭
         print('감성사전 매칭')

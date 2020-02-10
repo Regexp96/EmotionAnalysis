@@ -22,10 +22,12 @@ def word_check(input_file, output_file):
     import re
     for i in f_test.readlines():
         # a = i.rstrip('\n').rstrip(',')
-        hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
+        hangul = re.compile('[^ 가-힣]+')
         a = hangul.sub("", i)
-        testset.append(a)
-
+        if len(a) == 0:
+            pass
+        else:
+            testset.append(a)
 
     lemmatiz = lemmatizer.Lemmatizer(stems=stems)
 
