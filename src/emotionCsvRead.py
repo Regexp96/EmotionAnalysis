@@ -15,7 +15,7 @@ def run(create_wordcount_list):
             decrement = True
 
     try:
-        f = open('../emotionData.csv', 'r')
+        f = open('graphData/emotionData.csv', 'r')
     except FileNotFoundError:
         print('file not found')
         return

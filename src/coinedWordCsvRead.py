@@ -14,7 +14,7 @@ def run(create_wordcount_list):
             maxInt = int(maxInt / 10)
             decrement = True
 
-    f = open('../coinedWordData.csv', 'r')
+    f = open('graphData/coinedWordData.csv', 'r')
     rdr = csv.reader(f)
 
     list = []

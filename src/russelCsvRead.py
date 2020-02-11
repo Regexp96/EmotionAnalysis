@@ -14,7 +14,7 @@ def run():
             maxInt = int(maxInt / 10)
             decrement = True
 
-    f = open('russelData.csv', 'r')
+    f = open('graphData/russelData.csv', 'r')
     rdr = csv.reader(f)
 
     list = []

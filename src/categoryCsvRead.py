@@ -14,7 +14,7 @@ def run():
             maxInt = int(maxInt / 10)
             decrement = True
 
-    f = open('categoryData.csv', 'r')
+    f = open('graphData/categoryData.csv', 'r')
     rdr = csv.reader(f)
 
     list = []

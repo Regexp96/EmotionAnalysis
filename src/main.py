@@ -84,7 +84,7 @@ def create_dictionary():
             max_int = int(max_int / 10)
             decrement = True
 
-    f = open('감정단어사전 647개 스테밍.csv', 'r')
+    f = open('graphData/감정단어사전 647개 스테밍.csv', 'r')
     rdr = csv.reader(f)
 
     steamed_file_list = []
@@ -150,7 +150,7 @@ def create_wordcloud(matching_complete):
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
-    plt.savefig('wordcloud.png', bbox_inches='tight')
+    plt.savefig('output/wordcloud.png', bbox_inches='tight')
     # plt.show()
 
 
@@ -158,9 +158,8 @@ def run(file_path=''):
     if __name__ == '__main__':
         # 분석할 텍스트파일 경로
         input_file = 'dataset/naver_news.csv'
-        output_file = 'output.txt'
-        matching_complete = 'matching_complete.txt'
-        complete_analyze = 'complete_analyze.txt'
+        output_file = 'output/output.txt'
+        matching_complete = 'output/matching_complete.txt'
         # file_name = file_path
         #
 
@@ -171,7 +170,7 @@ def run(file_path=''):
 
         # 형태소분석
         print('형태소 분석 시작.')
-        morpheme_analysis(input_file,output_file)
+        # morpheme_analysis(input_file,output_file)
 
         # 감정단어사전 매칭
         print('감성사전 매칭')

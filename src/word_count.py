@@ -12,7 +12,7 @@ def word_check(input_file, output_file):
     start = timeit.default_timer()
     # stems == 용언의 원형 사전
     stems = []
-    f_word = open('emotionword_dic.csv', 'r')
+    f_word = open('graphData/emotionword_dic.csv', 'r')
     output = open(output_file, 'w')
     for i in f_word.readlines():
         stems.append(i.rstrip("\n"))

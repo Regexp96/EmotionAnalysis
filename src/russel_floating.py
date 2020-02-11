@@ -302,7 +302,7 @@ def run(filename, analysis = analysis()):
                 i += 1
 
             plt.grid(linestyle=':')  # 격자무늬
-            plt.savefig('emotionmodel.png', bbox_inches='tight')
+            plt.savefig('output/emotionmodel.png', bbox_inches='tight')
             plt.show()
 
             # piechart 띄우기
