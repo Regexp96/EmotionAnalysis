@@ -5,6 +5,7 @@ import russel_floating
 from konlpy.tag import Hannanum
 import csv
 from pykospacing import spacing
+import sys
 
 
 def morpheme_analysis(input_filename, output_filename):
@@ -68,72 +69,6 @@ def morpheme_analysis(input_filename, output_filename):
     print('감정표현가능 형태소만 분류한 개수 ', mor_word_count)
 
 
-def create_dictionary():
-    import sys
-    import csv
-
-    # csv 읽는 부분
-    max_int = sys.maxsize
-    decrement = True
-
-    while decrement:
-        decrement = False
-        try:
-            csv.field_size_limit(max_int)
-        except OverflowError:
-            max_int = int(max_int / 10)
-            decrement = True
-
-    f = open('graphData/감정단어사전 647개 스테밍.csv', 'r')
-    rdr = csv.reader(f)
-
-    steamed_file_list = []
-
-    for line in rdr:
-        steamed_file_list.append(line)
-        print(line)
-
-    f.close()
-    return steamed_file_list
-
-
-# 폐기예정
-def dictionary_matching(matching_complete,complete_analyze):
-    # 감정단어사전 생성
-    dictionaryList = create_dictionary()
-
-    # 감정단어와 매칭된 형태소분석 완료 단어를 기록하기 위한 파일 오픈
-    w = open(matching_complete, 'w')
-
-    # 감정단어사전과 매칭시키기 위한 형태소분석 완료 단어 데이터 파일 오픈
-    readFile = open(complete_analyze, 'rt')
-
-    while True:
-        # 한 줄을 읽을 때 개행문자도 같이 읽혀서 제거해줌
-        line = readFile.readline().rstrip('\n')
-        n = 0
-
-        if not line:
-            print('감정단어사전 매칭 완료')
-            print('감성단어는 총 '+str(n)+'개입니다.')
-            readFile.close()
-            break
-
-        for i in dictionaryList:
-            # ['1', '2'] 이렇게 2개이상일 때만 즉, 기본형 플러스 변형어도 갖고 있을 때
-            if len(i) > 1:
-                # 형태소분석한 단어가 감정표현단어의 기본형과 같거나 변형어와 같다면
-                if line == i[0] or line in i[1].split('_'):
-                    w.write(i[0] + '\n')
-                    n = n+1
-                    print(i[0])
-            # ['1'] 이런식으로 기본형만 있을 때 같은지 비교
-            elif line == i[0]:
-                w.write(i[0] + '\n')  # 왜 감격하다면 감,격,하,다 이렇게 저장되지?
-                n = n + 1
-                print(i[0])
-
-
 def create_wordcloud(matching_complete):
     font_path = '../Font/HMKMRHD.ttf'
     d = path.dirname(__file__)
@@ -154,10 +89,10 @@ def create_wordcloud(matching_complete):
     # plt.show()
 
 
-def run(file_path=''):
+def run(file_path=sys.argv[1]):
     if __name__ == '__main__':
         # 분석할 텍스트파일 경로
-        input_file = 'dataset/naver_news.csv'
+        input_file = file_path
         output_file = 'output/output.txt'
         matching_complete = 'output/matching_complete.txt'
         # file_name = file_path
@@ -170,11 +105,10 @@ def run(file_path=''):
 
         # 형태소분석
         print('형태소 분석 시작.')
-        # morpheme_analysis(input_file,output_file)
+        morpheme_analysis(input_file,output_file)
 
         # 감정단어사전 매칭
         print('감성사전 매칭')
-        # dictionary_matching(matching_complete,output_file)
         import word_count
         word_count.word_check(output_file, matching_complete)
 
@@ -186,4 +120,8 @@ def run(file_path=''):
         print('모델에 플로팅')
         russel_floating.run(matching_complete)
 
+        # print(file_path)
+
 run()
+
+# print(sys.argv)
