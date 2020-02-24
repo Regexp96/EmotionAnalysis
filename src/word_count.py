@@ -17,6 +17,8 @@ def word_check(input_file, output_file):
     for i in f_word.readlines():
         stems.append(i.rstrip("\n"))
     # testset == 원형을 찾고싶은 단어들을 모아놓은 배열
+    total_len = len(stems)
+    finish = 0
     testset = []
     f_test = open(input_file, 'r')
     import re
@@ -29,6 +31,7 @@ def word_check(input_file, output_file):
         else:
             testset.append(a)
 
+
     lemmatiz = lemmatizer.Lemmatizer(stems=stems)
 
     for word in testset:
@@ -36,13 +39,13 @@ def word_check(input_file, output_file):
         if len(candidates) == 0:
             # print(word)
             if non_predicate(word, stems):
-                print(word[0])
+                # print(word[0])
                 output.write(word[0]+'\n')
             # # print('후보가 없음')
         else:
             # print('{} : {}'.format(word, candidates))
             cand_list = list(candidates)
-            print(list(cand_list[0])[0])
+            # print(list(cand_list[0])[0])
             output.write(list(cand_list[0])[0]+'\n')
             # print(candidates)
 
