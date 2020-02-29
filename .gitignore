@@ -5,3 +5,4 @@ wordcloud/morpheme_count.csv
 wordcloud/morpheme_count12.csv
 
 /lemmatizer/*.txt
+src/output/*

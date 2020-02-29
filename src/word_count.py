@@ -7,50 +7,40 @@ from soynlp.hangle import compose, decompose
 # todo test셋도 csv파일 기반으로 만들고 테스트 돌려보기
 
 
-def word_check(input_file, output_file):
+# def word_check(input_file, output_file):
+def word_check(word, output):
     import timeit
     start = timeit.default_timer()
     # stems == 용언의 원형 사전
     stems = []
-    f_word = open('graphData/emotionword_dic.csv', 'r')
-    output = open(output_file, 'w')
-    for i in f_word.readlines():
+    word_dic = open('graphData/emotionword_dic.csv', 'r')
+    for i in word_dic.readlines():
         stems.append(i.rstrip("\n"))
     # testset == 원형을 찾고싶은 단어들을 모아놓은 배열
-    total_len = len(stems)
-    finish = 0
-    testset = []
-    f_test = open(input_file, 'r')
-    import re
-    for i in f_test.readlines():
-        # a = i.rstrip('\n').rstrip(',')
-        hangul = re.compile('[^ 가-힣]+')
-        a = hangul.sub("", i)
-        if len(a) == 0:
-            pass
-        else:
-            testset.append(a)
+    testset = ''
 
+    import re
+    hangul = re.compile('[^ 가-힣]+')
+    a = hangul.sub("", word)
+    if len(a) == 0:
+        pass
+    else:
+        testset = a
 
     lemmatiz = lemmatizer.Lemmatizer(stems=stems)
 
-    for word in testset:
-        candidates = lemmatiz.candidates(word)
-        if len(candidates) == 0:
-            # print(word)
-            if non_predicate(word, stems):
-                # print(word[0])
-                output.write(word[0]+'\n')
-            # # print('후보가 없음')
-        else:
-            # print('{} : {}'.format(word, candidates))
-            cand_list = list(candidates)
-            # print(list(cand_list[0])[0])
-            output.write(list(cand_list[0])[0]+'\n')
-            # print(candidates)
-
-    stop = timeit.default_timer()
-    print(stop - start)
+    candidates = lemmatiz.candidates(testset)
+    if len(candidates) == 0:
+        # print(word)
+        if non_predicate(testset, stems):
+            # print(word[0])
+            output.write(testset[0] + '\n')
+            print('후보가 없음')
+    else:
+        # print('{} : {}'.format(word, candidates))
+        cand_list = list(candidates)
+        print(list(cand_list[0])[0])
+        output.write(list(cand_list[0])[0] + '\n')
 
 
 def non_predicate(target_word, dic_word):
