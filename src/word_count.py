@@ -7,7 +7,6 @@ from soynlp.hangle import compose, decompose
 # todo test셋도 csv파일 기반으로 만들고 테스트 돌려보기
 
 
-# def word_check(input_file, output_file):
 def word_check(word, output):
     import timeit
     start = timeit.default_timer()
@@ -39,7 +38,6 @@ def word_check(word, output):
     else:
         # print('{} : {}'.format(word, candidates))
         cand_list = list(candidates)
-        print(list(cand_list[0])[0])
         output.write(list(cand_list[0])[0] + '\n')
 
 

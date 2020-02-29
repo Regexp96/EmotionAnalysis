@@ -110,24 +110,19 @@ def run():
         # input_file = file_path
         input_file = 'dataset/twitter1.csv'
         output_file = 'output/output.txt'
-        matching_complete = 'output/matching_complete.txt'
 
         print(input_file, '분석중....')
         # 형태소분석
         print('형태소 분석/매칭 시작')
         morpheme_analysis(input_file, output_file)
 
-        # 감정단어사전 매칭
-        print('감성사전 매칭')
-        word_count.word_check(output_file, matching_complete)
-
         # 워드클라우드 생성
         print('워드클라우드 생성')
-        create_wordcloud(matching_complete)
+        create_wordcloud(output_file)
 
         # 러셀모델에 플로팅
         print('모델에 플로팅')
-        russel_floating.run(matching_complete)
+        russel_floating.run(output_file)
 
 run()
 
