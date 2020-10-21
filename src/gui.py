@@ -51,7 +51,7 @@ class Ui_Form(object):
 
         self.pushButton.clicked.connect(self.pushButtonClicked)
         self.buttonBox.accepted.connect(self.accept)
-        self.clickable(self.main_graphics).connect(self.img_clicked)
+        # self.clickable(self.main_graphics).connect(self.img_clicked)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -86,25 +86,25 @@ class Ui_Form(object):
         fname = QFileDialog.getOpenFileName()
         self.lineEdit.setText(fname[0])
 
-    def clickable(self, widget):
-        global FILE_LIST
-
-        class Filter(QObject):
-            clicked = Signal()
-
-            def eventFilter(self, obj, event):
-                if obj == widget:
-                    if event.type() == QEvent.MouseButtonRelease:
-                        if obj.rect().contains(event.pos()):
-                            self.clicked.emit()
-                            # The developer can opt for .emit(obj) to get the object within the slot.
-                            return True
-
-                return False
-
-        filter = Filter(widget)
-        widget.installEventFilter(filter)
-        return filter.clicked
+    # def clickable(self, widget):
+    #     global FILE_LIST
+    #
+    #     class Filter(QObject):
+    #         clicked = Signal()
+    #
+    #         def eventFilter(self, obj, event):
+    #             if obj == widget:
+    #                 if event.type() == QEvent.MouseButtonRelease:
+    #                     if obj.rect().contains(event.pos()):
+    #                         self.clicked.emit()
+    #                         # The developer can opt for .emit(obj) to get the object within the slot.
+    #                         return True
+    #
+    #             return False
+    #
+    #     filter = Filter(widget)
+    #     widget.installEventFilter(filter)
+    #     return filter.clicked
 
 if __name__ == "__main__":
     import sys
