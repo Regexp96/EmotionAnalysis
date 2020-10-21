@@ -22,6 +22,7 @@ def create(positiveCount, nagativeCount):
                 autopct='%1.1f%%', shadow=True, startangle=70,
                 wedgeprops={"edgecolor": "k", 'linewidth': 1, 'antialiased': True})
 
+        plt.savefig("output/pie_chart.png")
         plt.show()
 
     except ImportError:

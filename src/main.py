@@ -30,7 +30,6 @@ def morpheme_analysis(input_filename, output_filename):
             un_spaced_line = lines[1]
             rows += 1
             # 띄어쓰기 검사
-            # 198자가 넘어가면 에러가 뜨는데 설마 198자나 띄어쓰기 안하고 쓰는사람이 있을리가...?
             if len(un_spaced_line) >= 198:
                 line = un_spaced_line
             else:
@@ -104,26 +103,27 @@ def create_wordcloud(matching_complete):
     # plt.show()
 
 
-def run():
-    if __name__ == '__main__':
-        # 분석할 텍스트파일 경로
-        # input_file = file_path
-        input_file = 'dataset/twitter1.csv'
-        output_file = 'output/output.txt'
+def run(arg):
+    # 분석할 텍스트파일 경로
+    # input_file = file_path
+    # input_file = '/Users/gyuseokjung/Everytime-Crawler/output.csv'
+    input_file = arg
+    output_file = 'output/output.txt'
 
-        print(input_file, '분석중....')
-        # 형태소분석
-        print('형태소 분석/매칭 시작')
-        morpheme_analysis(input_file, output_file)
+    print(input_file, '분석중....')
+    # 형태소분석
+    print('형태소 분석/매칭 시작')
+    morpheme_analysis(input_file, output_file)
 
-        # 워드클라우드 생성
-        print('워드클라우드 생성')
-        create_wordcloud(output_file)
+    # 워드클라우드 생성
+    print('워드클라우드 생성')
+    create_wordcloud(output_file)
 
         # 러셀모델에 플로팅
-        print('모델에 플로팅')
-        russel_floating.run(output_file)
+    print('모델에 플로팅')
+    russel_floating.run(output_file)
 
-run()
+
+# run('ss')
 
 # print(sys.argv)

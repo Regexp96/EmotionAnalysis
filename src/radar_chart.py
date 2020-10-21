@@ -19,6 +19,7 @@ def create(categoryCountList):
         ax.fill(angles, data, 'blue', alpha=0.1)
 
         ax.set_title('title')
+        plt.savefig('output/radar_chart.png')
         plt.show()
 
     except ImportError:

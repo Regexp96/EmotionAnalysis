@@ -119,7 +119,7 @@ class Lemmatizer:
 
         # ㅎ (탈락) 불규칙 활용
         # 파라 + 면 -> 파랗다
-        if (l_last[2] == ' ' or l_last[2] == 'ㄴ' or l_last[2] == 'ㄹ' or l_last[2] == 'ㅂ' or l_last[2] == 'ㅆ'):
+        if l_last[2] == ' ' or l_last[2] == 'ㄴ' or l_last[2] == 'ㄹ' or l_last[2] == 'ㅂ' or l_last[2] == 'ㅆ':
             l_stem = l[:-1] + compose(l_last[0], l_last[1], 'ㅎ')
             r_canon = r if l_last[2] == ' ' else l_last[2] + r
             if self.is_stem(l_stem):

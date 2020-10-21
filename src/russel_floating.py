@@ -207,12 +207,13 @@ def run(filename, analysis = analysis()):
             import matplotlib.pyplot as plt
             from matplotlib import font_manager
 
-            russelFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
+            russelFont = font_manager.FontProperties(fname='../Font/HMKMRHD.TTF', size=14)
             # emotionFont = font_manager.FontProperties(fname='c:/Windows/Fonts/NanumMyeongjo.ttf', size=28)
-            emotionFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
-            categoryFont = font_manager.FontProperties(fname='../Font/HMKMRHD.ttf', size=14)
+            emotionFont = font_manager.FontProperties(fname='../Font/HMKMRHD.TTF', size=14)
+            categoryFont = font_manager.FontProperties(fname='../Font/HMKMRHD.TTF', size=14)
 
             fig = plt.figure(figsize=(18, 10))  # 그래프의 가로세로 크기
+
             # fig = plt.figure(figsize=(10, 6))  # 그래프의 가로세로 크기
             ax = fig.gca()
             ax.set_xlim([-1, 1])  # x축의 한계

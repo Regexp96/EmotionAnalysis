@@ -6,7 +6,6 @@ from soynlp.hangle import compose, decompose
 # todo 사전 csv파일 읽어서 원형 복원기 사전으로 넣기
 # todo test셋도 csv파일 기반으로 만들고 테스트 돌려보기
 
-
 def word_check(word, output):
     import timeit
     start = timeit.default_timer()
